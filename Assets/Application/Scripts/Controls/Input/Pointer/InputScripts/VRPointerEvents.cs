@@ -1,0 +1,66 @@
+﻿using UnityEngine;
+using System.Collections;
+using UnityEngine.EventSystems;
+
+namespace BabilinApps.VRInput
+{
+
+    /// <summary>
+    /// links VRInput events to Unity events
+    /// </summary>
+    public class VRPointerEvents : MonoBehaviour
+    {
+        //Unity UI pointer data 
+        private PointerEventData currentEventData;
+
+
+
+        // Use this for initialization
+        protected void SetPointerEvents()
+        {
+            currentEventData = new PointerEventData(EventSystem.current);
+
+            if (currentEventData == null)
+                Debug.LogWarning("There is no  Unity UI Event System in the scene");
+
+        }
+
+
+        protected void UnityPointerEnter(GameObject activeItem)
+        {
+            if (currentEventData != null)
+                ExecuteEvents.Execute(activeItem, currentEventData, ExecuteEvents.pointerEnterHandler);
+        }
+
+        protected void UnityPointerSelect(GameObject activeItem)
+        {
+            if (currentEventData != null)
+                ExecuteEvents.Execute(activeItem, currentEventData, ExecuteEvents.selectHandler);
+        }
+
+        protected void UnityPointerDeselect(GameObject activeItem)
+        {
+            if (currentEventData != null) { 
+                ExecuteEvents.Execute(activeItem, currentEventData, ExecuteEvents.deselectHandler);
+            ExecuteEvents.Execute(activeItem, currentEventData, ExecuteEvents.pointerUpHandler);
+        }
+    }
+
+        protected void UnityPointerExit(GameObject activeItem)
+        {
+            if (currentEventData != null) {
+                ExecuteEvents.Execute(activeItem, currentEventData, ExecuteEvents.pointerExitHandler);
+                ExecuteEvents.Execute(activeItem, currentEventData, ExecuteEvents.pointerUpHandler);
+            }
+            }
+
+        protected void UnityPointerClick(GameObject activeItem)
+        {
+            if (currentEventData != null) {
+                ExecuteEvents.Execute(activeItem, currentEventData, ExecuteEvents.pointerDownHandler);
+                ExecuteEvents.Execute(activeItem, currentEventData, ExecuteEvents.pointerClickHandler);
+             
+            }
+        }
+    }
+}
