@@ -104,6 +104,8 @@ public class EmotionData : MonoBehaviour {
 
 	private void StartChangeFace(EmotionEmum ToEmotion, float speed) 
 	{
+		//Debug.Log ("-------" + ToEmotion.ToString() + "-------");
+
 		if (ToEmotion == EmotionEmum.neutral) {
 			StartResetFace (.4f);
 			return;

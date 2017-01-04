@@ -15,6 +15,10 @@ public class BluetoothListener : MonoBehaviour {
     private BluetoothDevice device;
     public FaceController[] FaceControllerArray;
     public Text debugText;
+
+	private char[] charsToTrim = { '{', '}' };
+	private string parsedFeeling;
+
     void Awake() {
         BluetoothAdapter.askEnableBluetooth();//Ask user to enable Bluetooth
                                               //BluetoothAdapter.enableBluetooth(); //you can by this force enabling Bluetooth without asking the user
@@ -31,7 +35,7 @@ public class BluetoothListener : MonoBehaviour {
         }
 
         /*
-		 * 10 equals the char '\n' which is a "new Line" in Ascci representation, 
+		 * 10 equals the char '\n' which is a "new Line" in ASCCI representation, 
 		 * so the read() method will retun a packet that was ended by the byte 10. simply read() will read lines.
 		 */
         device.setEndByte(10);
@@ -42,8 +46,6 @@ public class BluetoothListener : MonoBehaviour {
         BluetoothAdapter.OnDeviceNotFound += HandleOnDeviceNotFound;
 
         connect();
-
-   
     }
 
     void HandleOnDeviceOff(BluetoothDevice dev) {
@@ -111,19 +113,52 @@ public class BluetoothListener : MonoBehaviour {
 
                 int indx = packets.get_packet_offset_index(packets.Count - 1);
                 int size = packets.get_packet_size(packets.Count - 1);
+                
+				//{smile, 0,0,0,0,0,0,0,0,0,0}
+				parsedFeeling = System.Text.ASCIIEncoding.ASCII.GetString(packets.Buffer, indx, size).Trim (charsToTrim).Split (',')[0];
 
-                string feeling = System.Text.ASCIIEncoding.ASCII.GetString(packets.Buffer, indx, size);
-                Debug.Log("BLUETOOTH : " + device.Name + " Feels : " + feeling);
-                debugText.text = " Feels : " + feeling;
-                onDataReceived.Invoke(feeling);
+				Debug.Log("BLUETOOTH : " + device.Name + " Feels : " + parsedFeeling);
+				debugText.text = " Feels : " + parsedFeeling;
+				onDataReceived.Invoke(parsedFeeling);
             }
 
-            yield return null;
+			yield return new WaitForSecondsRealtime (0.1f);
         }
 
 
     }
 
+	// Update is called once per frame
+	void Update() {
+		/*if (NetworkPlayerCtrl.networkPlayerAuthority != null)
+                NetworkPlayerCtrl.networkPlayerAuthority.SetExpression("Joy");*/
+
+		if (Input.GetKeyDown (KeyCode.Alpha1)) {
+			parsedFeeling = "{neutral, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+			onDataReceived.Invoke (parsedFeeling);
+		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+			parsedFeeling = "{smile, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+			onDataReceived.Invoke (parsedFeeling);
+		} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
+			parsedFeeling = "{anger, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+			onDataReceived.Invoke (parsedFeeling);
+		} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
+			parsedFeeling = "{contempt, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+			onDataReceived.Invoke (parsedFeeling);
+		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
+			parsedFeeling = "{disgust, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+			onDataReceived.Invoke (parsedFeeling);
+		} else if (Input.GetKeyDown (KeyCode.Alpha6)) {
+			parsedFeeling = "{surprise, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+			onDataReceived.Invoke (parsedFeeling);
+		} else if (Input.GetKeyDown (KeyCode.Alpha7)) {
+			parsedFeeling = "{fear, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+			onDataReceived.Invoke (parsedFeeling);
+		} else if (Input.GetKeyDown (KeyCode.Alpha8)) {
+			parsedFeeling = "{sadness, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+			onDataReceived.Invoke (parsedFeeling);
+		}
+	}
 
     //############### UnRegister Events  #####################
     void OnDestroy() {

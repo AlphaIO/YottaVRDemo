@@ -37,19 +37,21 @@ namespace YottaIO.Tools {
 
             UnityEngine.VR.InputTracking.Recenter();
         }
-        // Use this for initialization
+        
+		// Use this for initialization
         IEnumerator StartApplicationAction() {
 
-            if (InfoPanels.Length != WaitTimes.Length)
+            /*if (InfoPanels.Length != WaitTimes.Length)
                 yield break;
 
             for (int i = 1; i < InfoPanels.Length; i++) {
                 UIController.ShowWindow(InfoPanels[i], 1);
                 webAPI.SendEvent(InfoPanels[i].name);
                 yield return new WaitForSeconds(WaitTimes[i]);
+            }*/
 
-
-            }
+			MaleSelected ();
+			yield return null;
         }
 
         public void StartApplication() {
@@ -61,9 +63,8 @@ namespace YottaIO.Tools {
 
         }
 
-        public void ShowNetwork() {
-
-
+        public void ShowNetwork() 
+		{
             var player = GameObject.FindGameObjectsWithTag("Player");
             foreach (GameObject thing in player) {
                 var playerscript = thing.GetComponent<PlayerScripts>();
@@ -76,10 +77,14 @@ namespace YottaIO.Tools {
             StartCoroutine(ShowSlides());
         }
         IEnumerator ShowSlides() {
-            yield return new WaitForSeconds(6);
-            Mirror.SetActive(false);
-            Menu.Show(PresentationView.gameObject);
-            PresentationView.StartPresentation(10);
+            //yield return new WaitForSeconds(6);
+
+			yield return new WaitForSeconds(2);
+			Tutorial.gameObject.SetActive (false);
+
+            //Mirror.SetActive(false);
+            //Menu.Show(PresentationView.gameObject);
+            //PresentationView.StartPresentation(10);
         }
 
         public void MaleSelected() {

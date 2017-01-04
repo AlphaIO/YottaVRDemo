@@ -9,7 +9,7 @@ namespace YottaIO.View {
 
         void Update() {
             if (TutorialData.TutorialComplete && done == false) {
-                Text.SetActive(true);
+                //Text.SetActive(true);
                 Debug.Log("done");
                 if (Done != null)
                     Done.Invoke();
