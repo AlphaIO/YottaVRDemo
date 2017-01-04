@@ -19,6 +19,18 @@ public class BluetoothListener : MonoBehaviour {
 	private char[] charsToTrim = { '{', '}' };
 	private string parsedFeeling;
 
+	private string[] inputDataVariants = new string[] 
+	{
+		"{smile, 0,0,0,0,0,0,0,0,0,0}",
+		"{anger, 0,0,0,0,0,0,0,0,0,0}",
+		"{contempt, 0,0,0,0,0,0,0,0,0,0}",
+		"{disgust, 0,0,0,0,0,0,0,0,0,0}",
+		"{surprise, 0,0,0,0,0,0,0,0,0,0}",
+		"{fear, 0,0,0,0,0,0,0,0,0,0}",
+		"{sadness, 0,0,0,0,0,0,0,0,0,0}",
+		"{neutral, 0,0,0,0,0,0,0,0,0,0}"
+	};
+
     void Awake() {
         BluetoothAdapter.askEnableBluetooth();//Ask user to enable Bluetooth
                                               //BluetoothAdapter.enableBluetooth(); //you can by this force enabling Bluetooth without asking the user
@@ -45,7 +57,12 @@ public class BluetoothListener : MonoBehaviour {
         BluetoothAdapter.OnDeviceOFF += HandleOnDeviceOff;
         BluetoothAdapter.OnDeviceNotFound += HandleOnDeviceNotFound;
 
-        connect();
+        //connect();
+
+		//Android - No bluetooth connection testing
+		#if !UNITY_EDITOR
+			StartCoroutine (RandomInputData());
+		#endif
     }
 
     void HandleOnDeviceOff(BluetoothDevice dev) {
@@ -71,15 +88,15 @@ public class BluetoothListener : MonoBehaviour {
             return;
         }
 
-        if (device != null) {
-            //please read about the different connect method. 
-            //this normal_connect(..) method uses nothing fancy, just normal connection. 
-            // the other method, connect(...) method,  will try different ways to connect and will take longer time
-            // but it's mainly to support a wide variety of devices, and it has bigger chance of connection.
-            device.connect();
-            StartCoroutine(ManageConnection(device));
-            //device.connect(false,false);
-        }
+		if (device != null) {
+			//please read about the different connect method. 
+			//this normal_connect(..) method uses nothing fancy, just normal connection. 
+			// the other method, connect(...) method,  will try different ways to connect and will take longer time
+			// but it's mainly to support a wide variety of devices, and it has bigger chance of connection.
+			device.connect ();
+			StartCoroutine (ManageConnection (device));
+			//device.connect(false,false);
+		}
     }
 
     public void disconnect() {
@@ -124,40 +141,53 @@ public class BluetoothListener : MonoBehaviour {
 
 			yield return new WaitForSecondsRealtime (0.1f);
         }
-
-
     }
+
+	//Android - No bluetooth connection testing
+	IEnumerator RandomInputData()
+	{
+		while (true) {
+			yield return new WaitForSecondsRealtime (5.0f);
+
+			parsedFeeling = inputDataVariants[Random.Range (0, inputDataVariants.Length)];
+			parsedFeeling = parsedFeeling.Trim (charsToTrim).Split (',') [0];
+			onDataReceived.Invoke (parsedFeeling);
+		}
+	}
 
 	// Update is called once per frame
 	void Update() {
 		/*if (NetworkPlayerCtrl.networkPlayerAuthority != null)
                 NetworkPlayerCtrl.networkPlayerAuthority.SetExpression("Joy");*/
 
-		if (Input.GetKeyDown (KeyCode.Alpha1)) {
-			parsedFeeling = "{neutral, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
-			onDataReceived.Invoke (parsedFeeling);
-		} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
-			parsedFeeling = "{smile, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
-			onDataReceived.Invoke (parsedFeeling);
-		} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
-			parsedFeeling = "{anger, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
-			onDataReceived.Invoke (parsedFeeling);
-		} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
-			parsedFeeling = "{contempt, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
-			onDataReceived.Invoke (parsedFeeling);
-		} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
-			parsedFeeling = "{disgust, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
-			onDataReceived.Invoke (parsedFeeling);
-		} else if (Input.GetKeyDown (KeyCode.Alpha6)) {
-			parsedFeeling = "{surprise, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
-			onDataReceived.Invoke (parsedFeeling);
-		} else if (Input.GetKeyDown (KeyCode.Alpha7)) {
-			parsedFeeling = "{fear, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
-			onDataReceived.Invoke (parsedFeeling);
-		} else if (Input.GetKeyDown (KeyCode.Alpha8)) {
-			parsedFeeling = "{sadness, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
-			onDataReceived.Invoke (parsedFeeling);
-		}
+		//Unity Editor PC testing
+		#if UNITY_EDITOR
+			if (Input.GetKeyDown (KeyCode.Alpha1)) {
+				parsedFeeling = "{neutral, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
+				parsedFeeling = "{smile, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
+				parsedFeeling = "{anger, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
+				parsedFeeling = "{contempt, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
+				parsedFeeling = "{disgust, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			} else if (Input.GetKeyDown (KeyCode.Alpha6)) {
+				parsedFeeling = "{surprise, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			} else if (Input.GetKeyDown (KeyCode.Alpha7)) {
+				parsedFeeling = "{fear, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			} else if (Input.GetKeyDown (KeyCode.Alpha8)) {
+				parsedFeeling = "{sadness, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			}
+		#endif
 	}
 
     //############### UnRegister Events  #####################
