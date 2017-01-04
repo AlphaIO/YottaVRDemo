@@ -167,6 +167,7 @@ public class EmotionData : MonoBehaviour {
 
             yield return null;
         }
-        CurrentEmotionState = ParseEnum<EmotionEmum>(data.groupName.ToUpper());
+
+		CurrentEmotionState = ParseEnum<EmotionEmum>(data.groupName.ToLower());
     }
 }

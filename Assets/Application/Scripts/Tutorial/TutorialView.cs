@@ -6,12 +6,7 @@ namespace YottaIO.View {
         public GameObject Text;
         public System.Action Done;
         bool done;
-        // Use this for initialization
-        void Start() {
 
-        }
-
-        // Update is called once per frame
         void Update() {
             if (TutorialData.TutorialComplete && done == false) {
                 Text.SetActive(true);

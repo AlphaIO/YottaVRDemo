@@ -16,18 +16,14 @@ public class TutorialButton : MonoBehaviour {
         checkMark.isOn = false;
     }
 
-    void Update() {
-
-
+    void Update() 
+	{
         if (FaceController.CurrentEmotionState == assignedEmotion && isComplete != true) {
 
             TutorialData.EmotionComplete();
             checkMark.isOn = true;
             isComplete = true;
             return;
-
         }
-
     }
-
 }
