@@ -28,7 +28,18 @@ public class BluetoothListener : MonoBehaviour {
 		"{surprise, 0,0,0,0,0,0,0,0,0,0}",
 		"{fear, 0,0,0,0,0,0,0,0,0,0}",
 		"{sadness, 0,0,0,0,0,0,0,0,0,0}",
-		"{neutral, 0,0,0,0,0,0,0,0,0,0}"
+		"{neutral, 0,0,0,0,0,0,0,0,0,0}",
+
+		"{big_wide_smile, 0,0,0,0,0,0,0,0,0,0}",
+		"{closed_smile, 0,0,0,0,0,0,0,0,0,0}",
+		"{eyebrows_only, 0,0,0,0,0,0,0,0,0,0}",
+		"{left_teeth, 0,0,0,0,0,0,0,0,0,0}",
+		"{mouth_only, 0,0,0,0,0,0,0,0,0,0}",
+		"{open_wide, 0,0,0,0,0,0,0,0,0,0}",
+		"{pursed_lips, 0,0,0,0,0,0,0,0,0,0}",
+		"{right_teeth, 0,0,0,0,0,0,0,0,0,0}",
+		"{smile_and_eyebrow, 0,0,0,0,0,0,0,0,0,0}",
+		"{teethview, 0,0,0,0,0,0,0,0,0,0}"
 	};
 
     void Awake() {
@@ -57,10 +68,9 @@ public class BluetoothListener : MonoBehaviour {
         BluetoothAdapter.OnDeviceOFF += HandleOnDeviceOff;
         BluetoothAdapter.OnDeviceNotFound += HandleOnDeviceNotFound;
 
-        //connect();
-
 		//Android - No bluetooth connection testing
 		#if !UNITY_EDITOR
+			//connect();
 			StartCoroutine (RandomInputData());
 		#endif
     }
@@ -161,30 +171,72 @@ public class BluetoothListener : MonoBehaviour {
                 NetworkPlayerCtrl.networkPlayerAuthority.SetExpression("Joy");*/
 
 		//Unity Editor PC testing
+		//Debug input from keyboard
 		#if UNITY_EDITOR
 			if (Input.GetKeyDown (KeyCode.Alpha1)) {
-				parsedFeeling = "{neutral, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				parsedFeeling = inputDataVariants[0].Trim (charsToTrim).Split (',') [0];
 				onDataReceived.Invoke (parsedFeeling);
 			} else if (Input.GetKeyDown (KeyCode.Alpha2)) {
-				parsedFeeling = "{smile, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				parsedFeeling = inputDataVariants[1].Trim (charsToTrim).Split (',') [0];
 				onDataReceived.Invoke (parsedFeeling);
 			} else if (Input.GetKeyDown (KeyCode.Alpha3)) {
-				parsedFeeling = "{anger, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				parsedFeeling = inputDataVariants[2].Trim (charsToTrim).Split (',') [0];
 				onDataReceived.Invoke (parsedFeeling);
 			} else if (Input.GetKeyDown (KeyCode.Alpha4)) {
-				parsedFeeling = "{contempt, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				parsedFeeling = inputDataVariants[3].Trim (charsToTrim).Split (',') [0];
 				onDataReceived.Invoke (parsedFeeling);
 			} else if (Input.GetKeyDown (KeyCode.Alpha5)) {
-				parsedFeeling = "{disgust, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				parsedFeeling = inputDataVariants[4].Trim (charsToTrim).Split (',') [0];
 				onDataReceived.Invoke (parsedFeeling);
 			} else if (Input.GetKeyDown (KeyCode.Alpha6)) {
-				parsedFeeling = "{surprise, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				parsedFeeling = inputDataVariants[5].Trim (charsToTrim).Split (',') [0];
 				onDataReceived.Invoke (parsedFeeling);
 			} else if (Input.GetKeyDown (KeyCode.Alpha7)) {
-				parsedFeeling = "{fear, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				parsedFeeling = inputDataVariants[6].Trim (charsToTrim).Split (',') [0];
 				onDataReceived.Invoke (parsedFeeling);
 			} else if (Input.GetKeyDown (KeyCode.Alpha8)) {
-				parsedFeeling = "{sadness, 0,0,0,0,0,0,0,0,0,0}".Trim (charsToTrim).Split (',') [0];
+				parsedFeeling = inputDataVariants[7].Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			}
+
+			else if (Input.GetKeyDown (KeyCode.F1)) {
+				parsedFeeling = inputDataVariants[8].Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			}
+			else if (Input.GetKeyDown (KeyCode.F2)) {
+				parsedFeeling = inputDataVariants[9].Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			}
+			else if (Input.GetKeyDown (KeyCode.F3)) {
+				parsedFeeling = inputDataVariants[10].Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			}
+			else if (Input.GetKeyDown (KeyCode.F4)) {
+				parsedFeeling = inputDataVariants[11].Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			}
+			else if (Input.GetKeyDown (KeyCode.F5)) {
+				parsedFeeling = inputDataVariants[12].Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			}
+			else if (Input.GetKeyDown (KeyCode.F6)) {
+				parsedFeeling = inputDataVariants[13].Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			}
+			else if (Input.GetKeyDown (KeyCode.F7)) {
+				parsedFeeling = inputDataVariants[14].Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			}
+			else if (Input.GetKeyDown (KeyCode.F8)) {
+				parsedFeeling = inputDataVariants[15].Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			}
+			else if (Input.GetKeyDown (KeyCode.F9)) {
+				parsedFeeling = inputDataVariants[16].Trim (charsToTrim).Split (',') [0];
+				onDataReceived.Invoke (parsedFeeling);
+			}
+			else if (Input.GetKeyDown (KeyCode.F10)) {
+				parsedFeeling = inputDataVariants[17].Trim (charsToTrim).Split (',') [0];
 				onDataReceived.Invoke (parsedFeeling);
 			}
 		#endif

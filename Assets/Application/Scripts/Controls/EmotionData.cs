@@ -14,7 +14,18 @@ public class EmotionData : MonoBehaviour {
 		disgust = 5, 
 		surprise = 6, 
 		fear = 7, 
-		sadness = 8
+		sadness = 8,
+
+		big_wide_smile = 9,
+		closed_smile = 10,
+		eyebrows_only = 11,
+		left_teeth = 12,
+		mouth_only = 13,
+		open_wide = 14,
+		pursed_lips = 15,
+		right_teeth = 16,
+		smile_and_eyebrow = 17,
+		teethview = 18
     }
 
     public static EmotionEmum CurrentEmotionState;
