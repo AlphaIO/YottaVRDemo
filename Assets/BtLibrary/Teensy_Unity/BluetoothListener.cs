@@ -10,7 +10,7 @@ public class BluetoothEvent : UnityEngine.Events.UnityEvent<string> { }
 
 public class BluetoothListener : MonoBehaviour {
     public string macAddress;
-    public string deviceName = "YOTTASENSE";
+	public string deviceName = "HMSoft";
     public BluetoothEvent onDataReceived;
     private BluetoothDevice device;
     public FaceController[] FaceControllerArray;
@@ -78,31 +78,46 @@ public class BluetoothListener : MonoBehaviour {
     }
 
     void HandleOnDeviceOff(BluetoothDevice dev) {
-        if (!string.IsNullOrEmpty(dev.Name))
-            Debug.Log("Can't connect to " + dev.Name + ", device is OFF");
+		if (!string.IsNullOrEmpty (dev.Name)) {
+			Debug.Log ("Can't connect to " + dev.Name + ", device is OFF");
+
+			debugLabel.text = "Can't connect to " + dev.Name + ", device is OFF";
+			debugText.text = "Can't connect to " + dev.Name + ", device is OFF";
+		}
+
         else if (!string.IsNullOrEmpty(dev.MacAddress)) {
             Debug.Log("Can't connect to " + dev.MacAddress + ", device is OFF");
+
+			debugLabel.text = "Can't connect to " + dev.MacAddress + ", device is OFF";
+			debugText.text = "Can't connect to " + dev.MacAddress + ", device is OFF";
         }
     }
     void HandleOnDeviceNotFound(BluetoothDevice dev) {
-        if (!string.IsNullOrEmpty(dev.Name))
-            Debug.Log("Can't find " + dev.Name + ", device might be OFF or not paird yet ");
+		if (!string.IsNullOrEmpty (dev.Name)) {
+			Debug.Log ("Can't find " + dev.Name + ", device might be OFF or not paird yet ");
+
+			debugLabel.text = "Can't find " + dev.Name + ", device might be OFF or not paird yet ";
+			debugText.text = "Can't find " + dev.Name + ", device might be OFF or not paird yet ";
+		}
         else if (!string.IsNullOrEmpty(dev.MacAddress)) {
             Debug.Log("Can't find " + dev.MacAddress + ", device is OFF or not paired yet");
+
+			debugLabel.text = "Can't find " + dev.MacAddress + ", device is OFF or not paired yet";
+			debugText.text = "Can't find " + dev.MacAddress + ", device is OFF or not paired yet";
         }
     }
 
     //############### UI BUTTONS #####################
     public void connect()//Connect to the public global variable "device" if it's not null.
     {
-		debugLabel.text = "connecting...";
-		debugText.text = "connecting...";
+		debugLabel.text = "starting to connect";
+		debugText.text = "starting to connect";
 
         if (!BluetoothAdapter.isBluetoothEnabled()) {
             BluetoothAdapter.askEnableBluetooth();
 
-			debugLabel.text = "no bluetooth";
-			debugText.text = "no bluetooth";
+			debugLabel.text = "no bluetooth enabled";
+			debugText.text = "no bluetooth enabled";
             return;
         }
 
@@ -129,8 +144,8 @@ public class BluetoothListener : MonoBehaviour {
     //Please note that you don't have to use Couroutienes, you can just put your code in the Update() method
     IEnumerator ManageConnection(BluetoothDevice device) {
 
-		debugLabel.text = "waiting for data";
-		debugText.text = "waiting for data";
+		debugLabel.text = "check if connected and reading";
+		debugText.text = "check if connected and reading";
 
         while (device.IsConnected && device.IsReading) {
 
@@ -170,6 +185,9 @@ public class BluetoothListener : MonoBehaviour {
 
 			yield return new WaitForSecondsRealtime (0.1f);
         }
+
+		debugLabel.text = "not connected, no reading";
+		debugText.text = "not connected, no reading";
     }
 
 	//Android - No bluetooth connection testing

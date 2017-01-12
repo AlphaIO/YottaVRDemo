@@ -9890,7 +9890,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   macAddress: 
-  deviceName: YOTTASENSE
+  deviceName: HMSoft
   onDataReceived:
     m_PersistentCalls:
       m_Calls:
@@ -23657,6 +23657,48 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.00000047683716, y: -0.12635422, z: 0.033471465}
     m_Extent: {x: 0.86191684, y: 0.91604304, z: 0.23571509}
   m_DirtyAABB: 0
+--- !u!1001 &917712367
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 489322, guid: 75b98d58fddbd48cc8b94606ed0c40df, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489322, guid: 75b98d58fddbd48cc8b94606ed0c40df, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489322, guid: 75b98d58fddbd48cc8b94606ed0c40df, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489322, guid: 75b98d58fddbd48cc8b94606ed0c40df, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489322, guid: 75b98d58fddbd48cc8b94606ed0c40df, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489322, guid: 75b98d58fddbd48cc8b94606ed0c40df, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 489322, guid: 75b98d58fddbd48cc8b94606ed0c40df, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 489322, guid: 75b98d58fddbd48cc8b94606ed0c40df, type: 2}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 75b98d58fddbd48cc8b94606ed0c40df, type: 2}
+  m_IsPrefabParent: 0
 --- !u!224 &922866516
 RectTransform:
   m_ObjectHideFlags: 0
