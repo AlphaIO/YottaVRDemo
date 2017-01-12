@@ -19,6 +19,8 @@ public class BluetoothListener : MonoBehaviour {
 	private char[] charsToTrim = { '{', '}' };
 	private string parsedFeeling;
 
+	public Text debugLabel;
+
 	private string[] inputDataVariants = new string[] 
 	{
 		"{smile, 0,0,0,0,0,0,0,0,0,0}",
@@ -70,8 +72,8 @@ public class BluetoothListener : MonoBehaviour {
 
 		//Android - No bluetooth connection testing
 		#if !UNITY_EDITOR
-			//connect();
-			StartCoroutine (RandomInputData());
+			connect();
+			//StartCoroutine (RandomInputData());
 		#endif
     }
 
@@ -93,8 +95,14 @@ public class BluetoothListener : MonoBehaviour {
     //############### UI BUTTONS #####################
     public void connect()//Connect to the public global variable "device" if it's not null.
     {
+		debugLabel.text = "connecting...";
+		debugText.text = "connecting...";
+
         if (!BluetoothAdapter.isBluetoothEnabled()) {
             BluetoothAdapter.askEnableBluetooth();
+
+			debugLabel.text = "no bluetooth";
+			debugText.text = "no bluetooth";
             return;
         }
 
@@ -103,8 +111,11 @@ public class BluetoothListener : MonoBehaviour {
 			//this normal_connect(..) method uses nothing fancy, just normal connection. 
 			// the other method, connect(...) method,  will try different ways to connect and will take longer time
 			// but it's mainly to support a wide variety of devices, and it has bigger chance of connection.
+			debugLabel.text = "connecting to device";
+			debugText.text = "connecting to device";
 			device.connect ();
 			StartCoroutine (ManageConnection (device));
+
 			//device.connect(false,false);
 		}
     }
@@ -118,10 +129,15 @@ public class BluetoothListener : MonoBehaviour {
     //Please note that you don't have to use Couroutienes, you can just put your code in the Update() method
     IEnumerator ManageConnection(BluetoothDevice device) {
 
+		debugLabel.text = "waiting for data";
+		debugText.text = "waiting for data";
 
         while (device.IsConnected && device.IsReading) {
 
             //polll all available packets
+			debugLabel.text = "reading packets";
+			debugText.text = "reading packets";
+
             BtPackets packets = device.readAllPackets();
 
             if (packets != null && packets.Count > 0) {
@@ -147,6 +163,9 @@ public class BluetoothListener : MonoBehaviour {
 				Debug.Log("BLUETOOTH : " + device.Name + " Feels : " + parsedFeeling);
 				debugText.text = " Feels : " + parsedFeeling;
 				onDataReceived.Invoke(parsedFeeling);
+
+				debugLabel.text = parsedFeeling;
+				debugText.text = parsedFeeling;
             }
 
 			yield return new WaitForSecondsRealtime (0.1f);
