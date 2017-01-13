@@ -9,18 +9,18 @@ using UnityEngine.UI;
 public class BluetoothEvent : UnityEngine.Events.UnityEvent<string> { }
 
 public class BluetoothListener : MonoBehaviour {
-    public string macAddress;
+	public FaceController[] FaceControllerArray;
+
+	public string macAddress;
 	public string deviceName = "HMSoft";
-    public BluetoothEvent onDataReceived;
+
+	public BluetoothEvent onDataReceived;
     private BluetoothDevice device;
-    public FaceController[] FaceControllerArray;
-    public Text debugText;
-
-	private char[] charsToTrim = { '{', '}' };
-	private string parsedFeeling;
-
+    
+	public Text debugText;
 	public Text debugLabel;
 
+	private char[] charsToTrim = { '{', '}' };
 	private string[] inputDataVariants = new string[] 
 	{
 		"{smile, 0,0,0,0,0,0,0,0,0,0}",
@@ -44,11 +44,9 @@ public class BluetoothListener : MonoBehaviour {
 		"{teethview, 0,0,0,0,0,0,0,0,0,0}"
 	};
 
-    void Awake() {
-        BluetoothAdapter.askEnableBluetooth();//Ask user to enable Bluetooth
-                                              //BluetoothAdapter.enableBluetooth(); //you can by this force enabling Bluetooth without asking the user
-                                              //BluetoothAdapter.listenToBluetoothState() // if you want to listen to the following two events  OnBluetoothOFF or OnBluetoothON
+	private string parsedFeeling;
 
+    void Awake() {
         device = new BluetoothDevice();
 
         //In general pairing while Unity is working is troublesome. You better pair the device with your HC-06
@@ -64,73 +62,85 @@ public class BluetoothListener : MonoBehaviour {
 		 * so the read() method will retun a packet that was ended by the byte 10. simply read() will read lines.
 		 */
         device.setEndByte(10);
+		device.ReadingCoroutine = ManageConnection;
+
+		BluetoothAdapter.OnDeviceOFF += HandleOnDeviceOff;
+		BluetoothAdapter.OnDeviceNotFound += HandleOnDeviceNotFound;
+		BluetoothAdapter.OnBluetoothON += HandleOnBluetoothON;
+
+		if (BluetoothAdapter.isBluetoothEnabled ()) {
+			AfterBtEnabled ();
+		} else {
+			SetDebugText ("Try enable BlueTooth");
+			//Ask user to enable BluetoothAdapter.askEnableBluetooth() - app hangs when using this in VR
+			//So we using BluetoothAdapter.enableBluetooth() - this force enabling Bluetooth without asking the user
+			BluetoothAdapter.enableBluetooth(); //Force Enabling Bluetooth
+		}
     }
 
-    void Start() {
-        BluetoothAdapter.OnDeviceOFF += HandleOnDeviceOff;
-        BluetoothAdapter.OnDeviceNotFound += HandleOnDeviceNotFound;
+	void HandleOnBluetoothON ()
+	{
+		SetDebugText ("HandleOnBluetoothON");
 
-		//Android - No bluetooth connection testing
-		#if !UNITY_EDITOR
-			connect();
-			//StartCoroutine (RandomInputData());
+		if (!device.IsConnected && !device.IsReading) {
+			AfterBtEnabled ();
+		}
+	}
+
+	private void AfterBtEnabled ()
+	{
+		#if UNITY_EDITOR
+		StartCoroutine (RandomInputData ());
 		#endif
-    }
+
+		#if !UNITY_EDITOR
+		connect ();
+
+		//Device without BT Yotta testing
+		//StartCoroutine (RandomInputData ());
+		#endif
+	}
+
+	private void SetDebugText (string txt)
+	{
+		debugLabel.text = txt;
+		debugText.text = txt;
+	}
 
     void HandleOnDeviceOff(BluetoothDevice dev) {
 		if (!string.IsNullOrEmpty (dev.Name)) {
 			Debug.Log ("Can't connect to " + dev.Name + ", device is OFF");
-
-			debugLabel.text = "Can't connect to " + dev.Name + ", device is OFF";
-			debugText.text = "Can't connect to " + dev.Name + ", device is OFF";
+			SetDebugText ("Can't connect to " + dev.Name + ", device is OFF");
 		}
 
         else if (!string.IsNullOrEmpty(dev.MacAddress)) {
             Debug.Log("Can't connect to " + dev.MacAddress + ", device is OFF");
-
-			debugLabel.text = "Can't connect to " + dev.MacAddress + ", device is OFF";
-			debugText.text = "Can't connect to " + dev.MacAddress + ", device is OFF";
-        }
+			SetDebugText ("Can't connect to " + dev.MacAddress + ", device is OFF");
+		}
     }
     void HandleOnDeviceNotFound(BluetoothDevice dev) {
 		if (!string.IsNullOrEmpty (dev.Name)) {
 			Debug.Log ("Can't find " + dev.Name + ", device might be OFF or not paird yet ");
-
-			debugLabel.text = "Can't find " + dev.Name + ", device might be OFF or not paird yet ";
-			debugText.text = "Can't find " + dev.Name + ", device might be OFF or not paird yet ";
+			SetDebugText ("Can't find " + dev.Name + ", device might be OFF or not paird yet ");
 		}
         else if (!string.IsNullOrEmpty(dev.MacAddress)) {
             Debug.Log("Can't find " + dev.MacAddress + ", device is OFF or not paired yet");
-
-			debugLabel.text = "Can't find " + dev.MacAddress + ", device is OFF or not paired yet";
-			debugText.text = "Can't find " + dev.MacAddress + ", device is OFF or not paired yet";
-        }
+			SetDebugText ("Can't find " + dev.MacAddress + ", device is OFF or not paired yet");
+		}
     }
 
-    //############### UI BUTTONS #####################
+    //############### Starting connection #####################
     public void connect()//Connect to the public global variable "device" if it's not null.
     {
-		debugLabel.text = "starting to connect";
-		debugText.text = "starting to connect";
-
-        if (!BluetoothAdapter.isBluetoothEnabled()) {
-            BluetoothAdapter.askEnableBluetooth();
-
-			debugLabel.text = "no bluetooth enabled";
-			debugText.text = "no bluetooth enabled";
-            return;
-        }
+		SetDebugText ("Starting to connect");
 
 		if (device != null) {
 			//please read about the different connect method. 
 			//this normal_connect(..) method uses nothing fancy, just normal connection. 
 			// the other method, connect(...) method,  will try different ways to connect and will take longer time
 			// but it's mainly to support a wide variety of devices, and it has bigger chance of connection.
-			debugLabel.text = "connecting to device";
-			debugText.text = "connecting to device";
+			SetDebugText ("Connecting to device");
 			device.connect ();
-			StartCoroutine (ManageConnection (device));
-
 			//device.connect(false,false);
 		}
     }
@@ -144,60 +154,49 @@ public class BluetoothListener : MonoBehaviour {
     //Please note that you don't have to use Couroutienes, you can just put your code in the Update() method
     IEnumerator ManageConnection(BluetoothDevice device) {
 
-		debugLabel.text = "check if connected and reading";
-		debugText.text = "check if connected and reading";
+		SetDebugText ("Connected & Can read");
 
-        while (device.IsConnected && device.IsReading) {
+        while (device.IsReading) 
+		{
+			SetDebugText ("device.IsReading");
 
-            //polll all available packets
-			debugLabel.text = "reading packets";
-			debugText.text = "reading packets";
-
-            BtPackets packets = device.readAllPackets();
-
-            if (packets != null && packets.Count > 0) {
-
-                /*
-				 *  'packets' are ordered by indecies (0,1,2,3 ... N),
-				 * where Nth packet is the latest packet and 0th is the oldest/first arrived packet.
-				 * 
-				 */
-
-                /*
-				* Ignore all old Texts within a single frame 
-				*(for example the comming packets are ('angry', 'smily') where 'smily' is the last packet, the code will take 'smily')
-				* "because it's a single frame" 
-				*/
-
-                int indx = packets.get_packet_offset_index(packets.Count - 1);
-                int size = packets.get_packet_size(packets.Count - 1);
-                
+			if (device.IsDataAvailable) {
 				//{smile, 0,0,0,0,0,0,0,0,0,0}
-				parsedFeeling = System.Text.ASCIIEncoding.ASCII.GetString(packets.Buffer, indx, size).Trim (charsToTrim).Split (',')[0];
+				SetDebugText ("device.IsDataAvailable");
+				byte [] msg = device.read ();//because we called setEndByte(10)..read will always return a packet excluding the last byte 10.
 
-				Debug.Log("BLUETOOTH : " + device.Name + " Feels : " + parsedFeeling);
-				debugText.text = " Feels : " + parsedFeeling;
-				onDataReceived.Invoke(parsedFeeling);
+				if (msg != null && msg.Length > 0) {
+					SetDebugText (System.Text.ASCIIEncoding.ASCII.GetString (msg));
+					//parsedFeeling = System.Text.ASCIIEncoding.ASCII.GetString (msg).Trim (charsToTrim).Split (',')[0];
 
-				debugLabel.text = parsedFeeling;
-				debugText.text = parsedFeeling;
+					//Debug.Log("BLUETOOTH : " + device.Name + " Feels : " + parsedFeeling);
+					//SetDebugText (parsedFeeling);
+
+					//onDataReceived.Invoke(parsedFeeling);
+				}
             }
 
-			yield return new WaitForSecondsRealtime (0.1f);
+			yield return null;
         }
 
-		debugLabel.text = "not connected, no reading";
-		debugText.text = "not connected, no reading";
+		//SetDebugText ("Done Reading");
     }
 
+	//############### UnRegister Events  #####################
+	void OnDestroy() {
+		BluetoothAdapter.OnDeviceOFF -= HandleOnDeviceOff;
+		BluetoothAdapter.OnDeviceNotFound -= HandleOnDeviceNotFound;
+		BluetoothAdapter.OnBluetoothON -= HandleOnBluetoothON;
+	}
+
+	//################### Editor Debug ###########################
 	//Android - No bluetooth connection testing
 	IEnumerator RandomInputData()
 	{
 		while (true) {
 			yield return new WaitForSecondsRealtime (5.0f);
 
-			parsedFeeling = inputDataVariants[Random.Range (0, inputDataVariants.Length)];
-			parsedFeeling = parsedFeeling.Trim (charsToTrim).Split (',') [0];
+			parsedFeeling = inputDataVariants[Random.Range (0, inputDataVariants.Length)].Trim (charsToTrim).Split (',') [0];
 			onDataReceived.Invoke (parsedFeeling);
 		}
 	}
@@ -278,11 +277,4 @@ public class BluetoothListener : MonoBehaviour {
 			}
 		#endif
 	}
-
-    //############### UnRegister Events  #####################
-    void OnDestroy() {
-        BluetoothAdapter.OnDeviceOFF -= HandleOnDeviceOff;
-        BluetoothAdapter.OnDeviceNotFound -= HandleOnDeviceNotFound;
-    }
-
 }

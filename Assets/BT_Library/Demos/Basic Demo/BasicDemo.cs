@@ -4,10 +4,11 @@ using UnityEngine.UI;
 
 using TechTweaking.Bluetooth;
 
-public class BasicDemo : MonoBehaviour {
-
+public class BasicDemo : MonoBehaviour 
+{
 	private  BluetoothDevice device;
 	public Text statusText;
+
 	// Use this for initialization
 	void Awake () {
 		

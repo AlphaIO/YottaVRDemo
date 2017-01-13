@@ -7605,7 +7605,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
 --- !u!1 &304902534
 GameObject:
   m_ObjectHideFlags: 0
@@ -9889,6 +9889,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a209a434a24e145af95225c176bec913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FaceControllerArray:
+  - {fileID: 1684438814}
+  - {fileID: 1720157175}
   macAddress: 
   deviceName: HMSoft
   onDataReceived:
@@ -9940,9 +9943,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: BluetoothEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
       PublicKeyToken=null
-  FaceControllerArray:
-  - {fileID: 1684438814}
-  - {fileID: 1720157175}
   debugText: {fileID: 923289690}
   debugLabel: {fileID: 2041437052}
 --- !u!4 &399190168
@@ -9957,7 +9957,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
 --- !u!1 &411498578
 GameObject:
   m_ObjectHideFlags: 0
@@ -23694,7 +23694,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 489322, guid: 75b98d58fddbd48cc8b94606ed0c40df, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 75b98d58fddbd48cc8b94606ed0c40df, type: 2}
