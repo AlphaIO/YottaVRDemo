@@ -158,28 +158,28 @@ public class BluetoothListener : MonoBehaviour {
 
         while (device.IsReading) 
 		{
-			SetDebugText ("device.IsReading");
+			//SetDebugText ("device.IsReading");
 
 			if (device.IsDataAvailable) {
 				//{smile, 0,0,0,0,0,0,0,0,0,0}
-				SetDebugText ("device.IsDataAvailable");
+				//SetDebugText ("device.IsDataAvailable");
 				byte [] msg = device.read ();//because we called setEndByte(10)..read will always return a packet excluding the last byte 10.
 
 				if (msg != null && msg.Length > 0) {
-					SetDebugText (System.Text.ASCIIEncoding.ASCII.GetString (msg));
-					//parsedFeeling = System.Text.ASCIIEncoding.ASCII.GetString (msg).Trim (charsToTrim).Split (',')[0];
+					//SetDebugText (System.Text.ASCIIEncoding.ASCII.GetString (msg));
+					parsedFeeling = System.Text.ASCIIEncoding.ASCII.GetString (msg).Trim (charsToTrim).Split (',')[0];
 
-					//Debug.Log("BLUETOOTH : " + device.Name + " Feels : " + parsedFeeling);
-					//SetDebugText (parsedFeeling);
+					Debug.Log("BLUETOOTH : " + device.Name + " Feels : " + parsedFeeling);
+					SetDebugText (parsedFeeling);
 
-					//onDataReceived.Invoke(parsedFeeling);
+					onDataReceived.Invoke(parsedFeeling);
 				}
             }
 
 			yield return null;
         }
 
-		//SetDebugText ("Done Reading");
+		SetDebugText ("Done Reading");
     }
 
 	//############### UnRegister Events  #####################
