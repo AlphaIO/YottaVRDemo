@@ -67,6 +67,7 @@ public class BluetoothListener : MonoBehaviour {
 		BluetoothAdapter.OnDeviceOFF += HandleOnDeviceOff;
 		BluetoothAdapter.OnDeviceNotFound += HandleOnDeviceNotFound;
 		BluetoothAdapter.OnBluetoothON += HandleOnBluetoothON;
+		BluetoothAdapter.listenToBluetoothState ();
 
 		if (BluetoothAdapter.isBluetoothEnabled ()) {
 			AfterBtEnabled ();
@@ -83,21 +84,19 @@ public class BluetoothListener : MonoBehaviour {
 		SetDebugText ("HandleOnBluetoothON");
 
 		if (!device.IsConnected && !device.IsReading) {
+			BluetoothAdapter.stopListenToBluetoothState ();
 			AfterBtEnabled ();
 		}
 	}
 
 	private void AfterBtEnabled ()
 	{
-		#if UNITY_EDITOR
-		StartCoroutine (RandomInputData ());
-		#endif
-
 		#if !UNITY_EDITOR
-		connect ();
+		//connect ();
 
 		//Device without BT Yotta testing
-		//StartCoroutine (RandomInputData ());
+
+		StartCoroutine (RandomInputData ());
 		#endif
 	}
 

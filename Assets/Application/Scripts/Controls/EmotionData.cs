@@ -184,3 +184,6 @@ public class EmotionData : MonoBehaviour {
 		CurrentEmotionState = ParseEnum<EmotionEmum>(data.groupName.ToLower());
     }
 }
+
+// 2560 x 1440
+// 
