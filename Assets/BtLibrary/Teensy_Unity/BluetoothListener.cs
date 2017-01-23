@@ -20,18 +20,20 @@ public class BluetoothListener : MonoBehaviour {
 	public Text debugText;
 	public Text debugLabel;
 
+	public const float DATA_UPDATE_FREQUENCY = 0.2f;
+
 	private char[] charsToTrim = { '{', '}' };
 	private string[] inputDataVariants = new string[] 
 	{
 		"{smile, 0,0,0,0,0,0,0,0,0,0}",
-		"{anger, 0,0,0,0,0,0,0,0,0,0}",
-		"{contempt, 0,0,0,0,0,0,0,0,0,0}",
-		"{disgust, 0,0,0,0,0,0,0,0,0,0}",
 		"{surprise, 0,0,0,0,0,0,0,0,0,0}",
+		"{contempt, 0,0,0,0,0,0,0,0,0,0}"//,
+
+		/*"{anger, 0,0,0,0,0,0,0,0,0,0}",
+		"{disgust, 0,0,0,0,0,0,0,0,0,0}",
 		"{fear, 0,0,0,0,0,0,0,0,0,0}",
 		"{sadness, 0,0,0,0,0,0,0,0,0,0}",
 		"{neutral, 0,0,0,0,0,0,0,0,0,0}",
-
 		"{big_wide_smile, 0,0,0,0,0,0,0,0,0,0}",
 		"{closed_smile, 0,0,0,0,0,0,0,0,0,0}",
 		"{eyebrows_only, 0,0,0,0,0,0,0,0,0,0}",
@@ -41,7 +43,7 @@ public class BluetoothListener : MonoBehaviour {
 		"{pursed_lips, 0,0,0,0,0,0,0,0,0,0}",
 		"{right_teeth, 0,0,0,0,0,0,0,0,0,0}",
 		"{smile_and_eyebrow, 0,0,0,0,0,0,0,0,0,0}",
-		"{teethview, 0,0,0,0,0,0,0,0,0,0}"
+		"{teethview, 0,0,0,0,0,0,0,0,0,0}"*/
 	};
 
 	private string parsedFeeling;
@@ -89,14 +91,21 @@ public class BluetoothListener : MonoBehaviour {
 		}
 	}
 
+	void Start ()
+	{
+		/*#if UNITY_EDITOR
+		StartCoroutine (RandomInputData ());
+		#endif*/
+	}
+
 	private void AfterBtEnabled ()
 	{
 		#if !UNITY_EDITOR
-		//connect ();
+		connect ();
 
 		//Device without BT Yotta testing
 
-		StartCoroutine (RandomInputData ());
+		//StartCoroutine (RandomInputData ());
 		#endif
 	}
 
@@ -175,7 +184,7 @@ public class BluetoothListener : MonoBehaviour {
 				}
             }
 
-			yield return null;
+			yield return new WaitForSecondsRealtime (DATA_UPDATE_FREQUENCY);
         }
 
 		SetDebugText ("Done Reading");
@@ -197,7 +206,23 @@ public class BluetoothListener : MonoBehaviour {
 
 			parsedFeeling = inputDataVariants[Random.Range (0, inputDataVariants.Length)].Trim (charsToTrim).Split (',') [0];
 			onDataReceived.Invoke (parsedFeeling);
+
+			SetDebugText (parsedFeeling);
 		}
+	}
+
+	public void ReadRandomEmotion ()
+	{
+		parsedFeeling = inputDataVariants[Random.Range (0, inputDataVariants.Length)].Trim (charsToTrim).Split (',') [0];
+		onDataReceived.Invoke (parsedFeeling);
+		SetDebugText (parsedFeeling);
+	}
+
+	public void SetNeutralEmotion ()
+	{
+		parsedFeeling = "neutral";
+		onDataReceived.Invoke (parsedFeeling);
+		SetDebugText (parsedFeeling);
 	}
 
 	// Update is called once per frame

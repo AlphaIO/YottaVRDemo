@@ -19,7 +19,9 @@ namespace YottaIO.Tools {
         private YottaNetworkView YottaNetworkView;
         [SerializeField]
         private TutorialView Tutorial;
-        [SerializeField]
+		[SerializeField]
+		private Window FbTimeline;
+		[SerializeField]
         LoadingUI LoadingPanel;
         public GameObject MalePlayer, FemalePlayer;
         public GameObject Mirror;
@@ -82,6 +84,7 @@ namespace YottaIO.Tools {
 			yield return new WaitForSeconds(2);
 			Tutorial.gameObject.SetActive (false);
 
+			FbTimeline.showWindow ();
             //Mirror.SetActive(false);
             //Menu.Show(PresentationView.gameObject);
             //PresentationView.StartPresentation(10);

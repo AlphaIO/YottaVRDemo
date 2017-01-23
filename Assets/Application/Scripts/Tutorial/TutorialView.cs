@@ -7,6 +7,13 @@ namespace YottaIO.View {
         public System.Action Done;
         bool done;
 
+		void OnEnable ()
+		{
+			#if UNITY_EDITOR
+				Done.Invoke();
+			#endif
+		}
+
         void Update() {
             if (TutorialData.TutorialComplete && done == false) {
                 //Text.SetActive(true);

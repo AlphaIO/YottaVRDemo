@@ -9,19 +9,27 @@ namespace YottaIO.View {
         private Coroutine HideCoroutine;
         protected float Alpha = 1;
 
+		private Vector3 initialScale;
+
         void Awake() {
             Alpha = transform.GetAlpha();
 
         }
+
+		void OnEnable ()
+		{
+			if (initialScale.x == 0 && initialScale.y == 0)
+				initialScale = transform.localScale;
+		}
 
         public void showWindow(float time = .5f) {
             if (HideCoroutine != null) {
                 StopAllCoroutines();
                 HideCoroutine = null;
             }
-            gameObject.SetActive(true);
-            StartCoroutine(Show(time));
 
+			gameObject.SetActive(true);
+            StartCoroutine(Show(time));
         }
 
         public void hideWindow(float time = .5f) {
@@ -38,7 +46,7 @@ namespace YottaIO.View {
         }
 
         public virtual IEnumerator Show(float time) {
-            transform.DOScale(Vector3.one, time);
+			transform.DOScale(initialScale, time);
             yield return new WaitForSeconds(time);
             yield break;
         }
