@@ -25,6 +25,7 @@ public class BluetoothListener : MonoBehaviour {
 	private char[] charsToTrim = { '{', '}' };
 	private string[] inputDataVariants = new string[] 
 	{
+		"{neutral, 0,0,0,0,0,0,0,0,0,0}",
 		"{smile, 0,0,0,0,0,0,0,0,0,0}",
 		"{surprise, 0,0,0,0,0,0,0,0,0,0}",
 		"{contempt, 0,0,0,0,0,0,0,0,0,0}"//,
@@ -33,7 +34,6 @@ public class BluetoothListener : MonoBehaviour {
 		"{disgust, 0,0,0,0,0,0,0,0,0,0}",
 		"{fear, 0,0,0,0,0,0,0,0,0,0}",
 		"{sadness, 0,0,0,0,0,0,0,0,0,0}",
-		"{neutral, 0,0,0,0,0,0,0,0,0,0}",
 		"{big_wide_smile, 0,0,0,0,0,0,0,0,0,0}",
 		"{closed_smile, 0,0,0,0,0,0,0,0,0,0}",
 		"{eyebrows_only, 0,0,0,0,0,0,0,0,0,0}",
@@ -202,7 +202,7 @@ public class BluetoothListener : MonoBehaviour {
 	IEnumerator RandomInputData()
 	{
 		while (true) {
-			yield return new WaitForSecondsRealtime (2.5f);
+			yield return new WaitForSecondsRealtime (1.5f);
 
 			parsedFeeling = inputDataVariants[Random.Range (0, inputDataVariants.Length)].Trim (charsToTrim).Split (',') [0];
 			onDataReceived.Invoke (parsedFeeling);
