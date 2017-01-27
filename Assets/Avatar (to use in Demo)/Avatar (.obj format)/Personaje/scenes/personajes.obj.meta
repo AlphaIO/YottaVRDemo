@@ -1,0 +1,168 @@
+fileFormatVersion: 2
+guid: 905d72b598e35e04096282ee0256c98a
+timeCreated: 1485180100
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M_GeoP_CejaDer_gGeoP_CejaDerSorpre_gGeoP_CejaDerEnojado_gGeoP_CejaDerLibre_CTRL_CejaDER
+    100002: Geo_G_P_Group_GeoP_Cabeza
+    100004: Geo_G_P_Group_GeoP_Camisa
+    100006: Geo_G_P_Group_GeoP_Camseta
+    100008: Geo_G_P_Group_GeoP_ManoIzq
+    100010: Geo_G_P_Group_GeoP_ManoIzq1
+    100012: Geo_G_P_Group_GeoP_Pantalones
+    100014: Geo_G_P_Group_GeoP_ZapatoDer
+    100016: Geo_G_P_Group_GeoP_ZapatoIzq
+    100018: Geo_G_P_Group_micaRElog_Relog
+    100020: Geo_G_P_Group_Relog_ExttensibleRelog
+    100022: Geo_G_P_Group_Relog_manecillas_relog
+    100024: GeoP_CejaIzq_gGeoP_CejaIzqSorpre_gGeoP_CejaIzqEnojado_gGeoP_CejaIzqLibre_CTRL_CejaIZQ_G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M
+    100026: GeoP_DientesAbajo_G_dientesAbajo
+    100028: GeoP_DientesArriba
+    100030: GeoP_Lengua_Geo_G_P_Group
+    100032: GeoP_OjoDer_FKEye_R_FKExtraEye_R
+    100034: GeoP_OjoIzq_FKEye_L_FKExtraEye_L
+    100036: GeoP_Pelo
+    100038: //RootNode
+    400000: G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M_GeoP_CejaDer_gGeoP_CejaDerSorpre_gGeoP_CejaDerEnojado_gGeoP_CejaDerLibre_CTRL_CejaDER
+    400002: Geo_G_P_Group_GeoP_Cabeza
+    400004: Geo_G_P_Group_GeoP_Camisa
+    400006: Geo_G_P_Group_GeoP_Camseta
+    400008: Geo_G_P_Group_GeoP_ManoIzq
+    400010: Geo_G_P_Group_GeoP_ManoIzq1
+    400012: Geo_G_P_Group_GeoP_Pantalones
+    400014: Geo_G_P_Group_GeoP_ZapatoDer
+    400016: Geo_G_P_Group_GeoP_ZapatoIzq
+    400018: Geo_G_P_Group_micaRElog_Relog
+    400020: Geo_G_P_Group_Relog_ExttensibleRelog
+    400022: Geo_G_P_Group_Relog_manecillas_relog
+    400024: GeoP_CejaIzq_gGeoP_CejaIzqSorpre_gGeoP_CejaIzqEnojado_gGeoP_CejaIzqLibre_CTRL_CejaIZQ_G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M
+    400026: GeoP_DientesAbajo_G_dientesAbajo
+    400028: GeoP_DientesArriba
+    400030: GeoP_Lengua_Geo_G_P_Group
+    400032: GeoP_OjoDer_FKEye_R_FKExtraEye_R
+    400034: GeoP_OjoIzq_FKEye_L_FKExtraEye_L
+    400036: GeoP_Pelo
+    400038: //RootNode
+    2300000: G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M_GeoP_CejaDer_gGeoP_CejaDerSorpre_gGeoP_CejaDerEnojado_gGeoP_CejaDerLibre_CTRL_CejaDER
+    2300002: Geo_G_P_Group_GeoP_Cabeza
+    2300004: Geo_G_P_Group_GeoP_Camisa
+    2300006: Geo_G_P_Group_GeoP_Camseta
+    2300008: Geo_G_P_Group_GeoP_ManoIzq
+    2300010: Geo_G_P_Group_GeoP_ManoIzq1
+    2300012: Geo_G_P_Group_GeoP_Pantalones
+    2300014: Geo_G_P_Group_GeoP_ZapatoDer
+    2300016: Geo_G_P_Group_GeoP_ZapatoIzq
+    2300018: Geo_G_P_Group_micaRElog_Relog
+    2300020: Geo_G_P_Group_Relog_ExttensibleRelog
+    2300022: Geo_G_P_Group_Relog_manecillas_relog
+    2300024: GeoP_CejaIzq_gGeoP_CejaIzqSorpre_gGeoP_CejaIzqEnojado_gGeoP_CejaIzqLibre_CTRL_CejaIZQ_G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M
+    2300026: GeoP_DientesAbajo_G_dientesAbajo
+    2300028: GeoP_DientesArriba
+    2300030: GeoP_Lengua_Geo_G_P_Group
+    2300032: GeoP_OjoDer_FKEye_R_FKExtraEye_R
+    2300034: GeoP_OjoIzq_FKEye_L_FKExtraEye_L
+    2300036: GeoP_Pelo
+    3300000: G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M_GeoP_CejaDer_gGeoP_CejaDerSorpre_gGeoP_CejaDerEnojado_gGeoP_CejaDerLibre_CTRL_CejaDER
+    3300002: Geo_G_P_Group_GeoP_Cabeza
+    3300004: Geo_G_P_Group_GeoP_Camisa
+    3300006: Geo_G_P_Group_GeoP_Camseta
+    3300008: Geo_G_P_Group_GeoP_ManoIzq
+    3300010: Geo_G_P_Group_GeoP_ManoIzq1
+    3300012: Geo_G_P_Group_GeoP_Pantalones
+    3300014: Geo_G_P_Group_GeoP_ZapatoDer
+    3300016: Geo_G_P_Group_GeoP_ZapatoIzq
+    3300018: Geo_G_P_Group_micaRElog_Relog
+    3300020: Geo_G_P_Group_Relog_ExttensibleRelog
+    3300022: Geo_G_P_Group_Relog_manecillas_relog
+    3300024: GeoP_CejaIzq_gGeoP_CejaIzqSorpre_gGeoP_CejaIzqEnojado_gGeoP_CejaIzqLibre_CTRL_CejaIZQ_G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M
+    3300026: GeoP_DientesAbajo_G_dientesAbajo
+    3300028: GeoP_DientesArriba
+    3300030: GeoP_Lengua_Geo_G_P_Group
+    3300032: GeoP_OjoDer_FKEye_R_FKExtraEye_R
+    3300034: GeoP_OjoIzq_FKEye_L_FKExtraEye_L
+    3300036: GeoP_Pelo
+    4300000: G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M_GeoP_CejaDer_gGeoP_CejaDerSorpre_gGeoP_CejaDerEnojado_gGeoP_CejaDerLibre_CTRL_CejaDER
+    4300002: Geo_G_P_Group_GeoP_Cabeza
+    4300004: Geo_G_P_Group_GeoP_Camisa
+    4300006: Geo_G_P_Group_GeoP_Camseta
+    4300008: Geo_G_P_Group_GeoP_ManoIzq
+    4300010: Geo_G_P_Group_GeoP_ManoIzq1
+    4300012: Geo_G_P_Group_GeoP_Pantalones
+    4300014: Geo_G_P_Group_GeoP_ZapatoDer
+    4300016: Geo_G_P_Group_GeoP_ZapatoIzq
+    4300018: Geo_G_P_Group_micaRElog_Relog
+    4300020: Geo_G_P_Group_Relog_ExttensibleRelog
+    4300022: Geo_G_P_Group_Relog_manecillas_relog
+    4300024: GeoP_CejaIzq_gGeoP_CejaIzqSorpre_gGeoP_CejaIzqEnojado_gGeoP_CejaIzqLibre_CTRL_CejaIZQ_G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M
+    4300026: GeoP_DientesAbajo_G_dientesAbajo
+    4300028: GeoP_DientesArriba
+    4300030: GeoP_Lengua_Geo_G_P_Group
+    4300032: GeoP_OjoDer_FKEye_R_FKExtraEye_R
+    4300034: GeoP_OjoIzq_FKEye_L_FKExtraEye_L
+    4300036: GeoP_Pelo
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

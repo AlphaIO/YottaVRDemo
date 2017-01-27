@@ -1,0 +1,148 @@
+fileFormatVersion: 2
+guid: a5e507a6a08879a46a4737e6432835a2
+timeCreated: 1485339569
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M_GeoP_CejaIzq_gGeoP_CejaIzqSorpre_gGeoP_CejaIzqEnojado_gGeoP_CejaIzqLibre_CTRL_CejaIZQ
+    100002: Geo_G_P_Group_ExttensibleRelog_Relog
+    100004: Geo_G_P_Group_GeoP_Cabeza
+    100006: Geo_G_P_Group_GeoP_Camisa
+    100008: Geo_G_P_Group_GeoP_Camseta
+    100010: Geo_G_P_Group_GeoP_ManoIzq
+    100012: Geo_G_P_Group_GeoP_ManoIzq1
+    100014: Geo_G_P_Group_GeoP_Pantalones
+    100016: Geo_G_P_Group_GeoP_ZapatoDer
+    100018: Geo_G_P_Group_Relog_micaRElog
+    100020: GeoP_CejaDer_gGeoP_CejaDerSorpre_gGeoP_CejaDerEnojado_gGeoP_CejaDerLibre_CTRL_CejaDER_G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M
+    100022: GeoP_OjoDer_FKEye_R_FKExtraEye_R
+    100024: GeoP_OjoIzq_FKEye_L_FKExtraEye_L
+    100026: GeoP_Pelo
+    100028: GeoP_ZapatoIzq_Geo_G_P_Group
+    100030: //RootNode
+    400000: G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M_GeoP_CejaIzq_gGeoP_CejaIzqSorpre_gGeoP_CejaIzqEnojado_gGeoP_CejaIzqLibre_CTRL_CejaIZQ
+    400002: Geo_G_P_Group_ExttensibleRelog_Relog
+    400004: Geo_G_P_Group_GeoP_Cabeza
+    400006: Geo_G_P_Group_GeoP_Camisa
+    400008: Geo_G_P_Group_GeoP_Camseta
+    400010: Geo_G_P_Group_GeoP_ManoIzq
+    400012: Geo_G_P_Group_GeoP_ManoIzq1
+    400014: Geo_G_P_Group_GeoP_Pantalones
+    400016: Geo_G_P_Group_GeoP_ZapatoDer
+    400018: Geo_G_P_Group_Relog_micaRElog
+    400020: GeoP_CejaDer_gGeoP_CejaDerSorpre_gGeoP_CejaDerEnojado_gGeoP_CejaDerLibre_CTRL_CejaDER_G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M
+    400022: GeoP_OjoDer_FKEye_R_FKExtraEye_R
+    400024: GeoP_OjoIzq_FKEye_L_FKExtraEye_L
+    400026: GeoP_Pelo
+    400028: GeoP_ZapatoIzq_Geo_G_P_Group
+    400030: //RootNode
+    2300000: G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M_GeoP_CejaIzq_gGeoP_CejaIzqSorpre_gGeoP_CejaIzqEnojado_gGeoP_CejaIzqLibre_CTRL_CejaIZQ
+    2300002: Geo_G_P_Group_ExttensibleRelog_Relog
+    2300004: Geo_G_P_Group_GeoP_Cabeza
+    2300006: Geo_G_P_Group_GeoP_Camisa
+    2300008: Geo_G_P_Group_GeoP_Camseta
+    2300010: Geo_G_P_Group_GeoP_ManoIzq
+    2300012: Geo_G_P_Group_GeoP_ManoIzq1
+    2300014: Geo_G_P_Group_GeoP_Pantalones
+    2300016: Geo_G_P_Group_GeoP_ZapatoDer
+    2300018: Geo_G_P_Group_Relog_micaRElog
+    2300020: GeoP_CejaDer_gGeoP_CejaDerSorpre_gGeoP_CejaDerEnojado_gGeoP_CejaDerLibre_CTRL_CejaDER_G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M
+    2300022: GeoP_OjoDer_FKEye_R_FKExtraEye_R
+    2300024: GeoP_OjoIzq_FKEye_L_FKExtraEye_L
+    2300026: GeoP_Pelo
+    2300028: GeoP_ZapatoIzq_Geo_G_P_Group
+    3300000: G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M_GeoP_CejaIzq_gGeoP_CejaIzqSorpre_gGeoP_CejaIzqEnojado_gGeoP_CejaIzqLibre_CTRL_CejaIZQ
+    3300002: Geo_G_P_Group_ExttensibleRelog_Relog
+    3300004: Geo_G_P_Group_GeoP_Cabeza
+    3300006: Geo_G_P_Group_GeoP_Camisa
+    3300008: Geo_G_P_Group_GeoP_Camseta
+    3300010: Geo_G_P_Group_GeoP_ManoIzq
+    3300012: Geo_G_P_Group_GeoP_ManoIzq1
+    3300014: Geo_G_P_Group_GeoP_Pantalones
+    3300016: Geo_G_P_Group_GeoP_ZapatoDer
+    3300018: Geo_G_P_Group_Relog_micaRElog
+    3300020: GeoP_CejaDer_gGeoP_CejaDerSorpre_gGeoP_CejaDerEnojado_gGeoP_CejaDerLibre_CTRL_CejaDER_G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M
+    3300022: GeoP_OjoDer_FKEye_R_FKExtraEye_R
+    3300024: GeoP_OjoIzq_FKEye_L_FKExtraEye_L
+    3300026: GeoP_Pelo
+    3300028: GeoP_ZapatoIzq_Geo_G_P_Group
+    4300000: G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M_GeoP_CejaIzq_gGeoP_CejaIzqSorpre_gGeoP_CejaIzqEnojado_gGeoP_CejaIzqLibre_CTRL_CejaIZQ
+    4300002: Geo_G_P_Group_ExttensibleRelog_Relog
+    4300004: Geo_G_P_Group_GeoP_Cabeza
+    4300006: Geo_G_P_Group_GeoP_Camisa
+    4300008: Geo_G_P_Group_GeoP_Camseta
+    4300010: Geo_G_P_Group_GeoP_ManoIzq
+    4300012: Geo_G_P_Group_GeoP_ManoIzq1
+    4300014: Geo_G_P_Group_GeoP_Pantalones
+    4300016: Geo_G_P_Group_GeoP_ZapatoDer
+    4300018: Geo_G_P_Group_Relog_micaRElog
+    4300020: GeoP_CejaDer_gGeoP_CejaDerSorpre_gGeoP_CejaDerEnojado_gGeoP_CejaDerLibre_CTRL_CejaDER_G_CTRL_cejas_FKHead_M_FKExtraHead_M_FKGlobalHead_M_FKGlobalStaticHead_M
+    4300022: GeoP_OjoDer_FKEye_R_FKExtraEye_R
+    4300024: GeoP_OjoIzq_FKEye_L_FKExtraEye_L
+    4300026: GeoP_Pelo
+    4300028: GeoP_ZapatoIzq_Geo_G_P_Group
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
