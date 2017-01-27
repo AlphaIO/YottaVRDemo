@@ -101,11 +101,11 @@ public class BluetoothListener : MonoBehaviour {
 	private void AfterBtEnabled ()
 	{
 		#if !UNITY_EDITOR
-		//connect ();
+		connect ();
 
 		//Device without BT Yotta testing
 
-		StartCoroutine (RandomInputData ());
+		//StartCoroutine (RandomInputData ());
 		#endif
 	}
 

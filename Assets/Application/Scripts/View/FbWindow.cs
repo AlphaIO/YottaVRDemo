@@ -66,7 +66,7 @@ namespace YottaIO.View {
 			else 
 			{
 				lastEmotion = FaceController.CurrentEmotionState;
-				currEmotionActiveTime = 0;
+				currEmotionActiveTime = Time.unscaledDeltaTime;
 			}
 
 			//Images change logic
