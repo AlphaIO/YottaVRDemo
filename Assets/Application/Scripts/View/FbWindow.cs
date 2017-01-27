@@ -22,9 +22,9 @@ namespace YottaIO.View {
 		public GameObject laughImg;
 
 		private EmotionData.EmotionEmum lastEmotion;
-		private const float MAX_CONSECUTIVE_READINGS = 5.0f;
+		private const float MAX_CONSECUTIVE_READINGS = 3.0f;
 		private const float EMOTION_COMPLETION_TIME = BluetoothListener.DATA_UPDATE_FREQUENCY * MAX_CONSECUTIVE_READINGS;
-		private float currEmotionActiveTime = 0;
+		private float currEmotionActiveTime = 0.0f;
 
 		private float currPictureShowTime = 0.0f;
 		private const float MAX_PICTURE_SHOW_TIME = 4.0f;
@@ -34,12 +34,12 @@ namespace YottaIO.View {
 		private int currPictureIndex = 0;
 
 		//-----Debug only, please remove-----
-		private BluetoothListener debugBT;
+		//private BluetoothListener debugBT;
 		//-----------------------------------
 
 		void Start ()
 		{
-			debugBT = GameObject.Find ("Bluetooth").GetComponent <BluetoothListener> ();
+			//debugBT = GameObject.Find ("Bluetooth").GetComponent <BluetoothListener> ();
 
 			for (int i = 0; i <= 5; i++) {
 				imageEmotion.Add (EmotionData.EmotionEmum.neutral);	
@@ -47,9 +47,9 @@ namespace YottaIO.View {
 			}
 
 			//--------DEBUG - REMOVE Later-------------
-			#if UNITY_EDITOR
+			/*#if UNITY_EDITOR
 			Invoke ("debugInvoke", 1.0f);
-			#endif
+			#endif*/
 			//----------------------------
 		}
 
@@ -60,7 +60,7 @@ namespace YottaIO.View {
 			{
 				currEmotionActiveTime += Time.unscaledDeltaTime;
 
-				if (currEmotionActiveTime >= EMOTION_COMPLETION_TIME && imageEmotion[currPictureIndex] != lastEmotion)
+				if (imageEmotion[currPictureIndex] != lastEmotion && currEmotionActiveTime >= EMOTION_COMPLETION_TIME)
 					OnEmotionCompleted ();
 			} 
 			else 
@@ -79,7 +79,13 @@ namespace YottaIO.View {
 
 		private void OnEmotionCompleted ()
 		{
-			currPictureShowTime = MAX_PICTURE_SHOW_TIME / 2.0f;
+			if (lastEmotion != EmotionData.EmotionEmum.smile 
+				&& lastEmotion != EmotionData.EmotionEmum.surprise 
+				&& lastEmotion != EmotionData.EmotionEmum.contempt) {
+				return;
+			}
+			
+			//currPictureShowTime = MAX_PICTURE_SHOW_TIME / 2.0f;
 			otherLikesTxt.text = LIKED_TXT;
 
 			likeAnimImg.SetActive (false);
@@ -120,12 +126,12 @@ namespace YottaIO.View {
 		private void ShowNextPicture ()
 		{
 			//--------DEBUG - REMOVE Later-------------
-			#if UNITY_EDITOR
+			/*#if UNITY_EDITOR
 			debugBT.SetNeutralEmotion ();
-			#endif
+			#endif*/
 			//----------------------------
 
-			lastEmotion = EmotionData.EmotionEmum.neutral;
+			//lastEmotion = EmotionData.EmotionEmum.neutral;
 			currEmotionActiveTime = 0;
 
 			currPictureShowTime = 0;
@@ -168,15 +174,15 @@ namespace YottaIO.View {
 			//---
 
 			//--------DEBUG - REMOVE Later-------------
-			#if UNITY_EDITOR
+			/*#if UNITY_EDITOR
 			Invoke ("debugInvoke", 1.0f);
-			#endif
+			#endif*/
 			//----------------------------
 		}
 
-		void debugInvoke ()
+		/*void debugInvoke ()
 		{
 			debugBT.ReadRandomEmotion ();
-		}
+		}*/
 	}
 }

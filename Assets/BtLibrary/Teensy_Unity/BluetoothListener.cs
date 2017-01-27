@@ -20,7 +20,7 @@ public class BluetoothListener : MonoBehaviour {
 	public Text debugText;
 	public Text debugLabel;
 
-	public const float DATA_UPDATE_FREQUENCY = 0.2f;
+	public const float DATA_UPDATE_FREQUENCY = 1.0f / 30.0f;
 
 	private char[] charsToTrim = { '{', '}' };
 	private string[] inputDataVariants = new string[] 
@@ -93,19 +93,19 @@ public class BluetoothListener : MonoBehaviour {
 
 	void Start ()
 	{
-		/*#if UNITY_EDITOR
+		#if UNITY_EDITOR
 		StartCoroutine (RandomInputData ());
-		#endif*/
+		#endif
 	}
 
 	private void AfterBtEnabled ()
 	{
 		#if !UNITY_EDITOR
-		connect ();
+		//connect ();
 
 		//Device without BT Yotta testing
 
-		//StartCoroutine (RandomInputData ());
+		StartCoroutine (RandomInputData ());
 		#endif
 	}
 
@@ -202,7 +202,7 @@ public class BluetoothListener : MonoBehaviour {
 	IEnumerator RandomInputData()
 	{
 		while (true) {
-			yield return new WaitForSecondsRealtime (5.0f);
+			yield return new WaitForSecondsRealtime (2.5f);
 
 			parsedFeeling = inputDataVariants[Random.Range (0, inputDataVariants.Length)].Trim (charsToTrim).Split (',') [0];
 			onDataReceived.Invoke (parsedFeeling);
@@ -211,7 +211,7 @@ public class BluetoothListener : MonoBehaviour {
 		}
 	}
 
-	public void ReadRandomEmotion ()
+	/*public void ReadRandomEmotion ()
 	{
 		parsedFeeling = inputDataVariants[Random.Range (0, inputDataVariants.Length)].Trim (charsToTrim).Split (',') [0];
 		onDataReceived.Invoke (parsedFeeling);
@@ -223,7 +223,7 @@ public class BluetoothListener : MonoBehaviour {
 		parsedFeeling = "neutral";
 		onDataReceived.Invoke (parsedFeeling);
 		SetDebugText (parsedFeeling);
-	}
+	}*/
 
 	// Update is called once per frame
 	void Update() {
