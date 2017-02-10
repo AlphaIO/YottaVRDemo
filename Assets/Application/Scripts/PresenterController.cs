@@ -10,7 +10,6 @@ public class PresenterController : MonoBehaviour {
     [SerializeField]
     RootMotion.FinalIK.FBBIKHeadEffector Head;
     [SerializeField]
-    MORPH3D.M3DCharacterManager Morph;
     RootMotion.FinalIK.FullBodyBipedIK FullBody;
     RootMotion.FinalIK.BipedIK BipedIK;
     // Use this for initialization
@@ -30,7 +29,6 @@ public class PresenterController : MonoBehaviour {
         Cam = gameObject.GetComponentInChildren<Camera>(true);
         Face = gameObject.GetComponentInChildren<FaceController>(true);
         Head = gameObject.GetComponentInChildren<RootMotion.FinalIK.FBBIKHeadEffector>(true);
-        Morph = gameObject.GetComponentInChildren<MORPH3D.M3DCharacterManager>(true);
         FullBody = gameObject.GetComponentInChildren<RootMotion.FinalIK.FullBodyBipedIK>(true);
         BipedIK = gameObject.GetComponentInChildren<RootMotion.FinalIK.BipedIK>(true);
         turnOff();
@@ -45,7 +43,6 @@ public class PresenterController : MonoBehaviour {
 
     void TurnOn() {
         Presenter.SetActive(true);
-        Morph.enabled = true;
         FullBody.enabled = true;
         BipedIK.enabled = true;
         Cam.enabled = true;

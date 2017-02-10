@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using MORPH3D;
-using MORPH3D.FOUNDATIONS;
 using System.Collections.Generic;
 using System;
 
@@ -29,15 +27,15 @@ public class EmotionData : MonoBehaviour {
     }
 
     public static EmotionEmum CurrentEmotionState;
-	Dictionary<EmotionEmum, CoreBlendshapeGroup> emotionDictionary = new Dictionary<EmotionEmum, CoreBlendshapeGroup>();
+	//Dictionary<EmotionEmum, CoreBlendshapeGroup> emotionDictionary = new Dictionary<EmotionEmum, CoreBlendshapeGroup>();
 
-	M3DCharacterManager m_CharacterManager;
+	//M3DCharacterManager m_CharacterManager;
 
     private Coroutine StopFaceCoroutine;
-    protected CoreBlendshapeGroup CurrentEmotion;
+    //protected CoreBlendshapeGroup CurrentEmotion;
 
     IEnumerator Start() {
-		CurrentEmotionState = EmotionEmum.neutral;
+		/*CurrentEmotionState = EmotionEmum.neutral;
 
         m_CharacterManager = GetComponent<M3DCharacterManager>();
         if (m_CharacterManager == null) {
@@ -45,12 +43,12 @@ public class EmotionData : MonoBehaviour {
             yield break;
         }
 
-        Init();
+        Init();*/
         yield break;
     }
 
     public void Init() {
-        foreach (CoreBlendshapeGroup Emotion in m_CharacterManager.GetAllBlendshapeGroups()) 
+        /*foreach (CoreBlendshapeGroup Emotion in m_CharacterManager.GetAllBlendshapeGroups()) 
 		{
 			try
 			{
@@ -66,7 +64,7 @@ public class EmotionData : MonoBehaviour {
 		//+1 is for EmotionEmum.neutral state, which does not defined in BlendShapes
 		if (emotionDictionary.Count+1 != Enum.GetValues (typeof(EmotionEmum)).Length) {
 			Debug.LogError ("Some BlendShapes emotions is missing");			
-		}
+		}*/
     }
 
     private static T ParseEnum<T>(string value) {
@@ -74,7 +72,7 @@ public class EmotionData : MonoBehaviour {
     }
 
 	public bool IsEmotion(string name) {
-		CoreBlendshapeGroup To = null;
+		/*CoreBlendshapeGroup To = null;
 
 		try
 		{
@@ -83,12 +81,16 @@ public class EmotionData : MonoBehaviour {
 		catch (Exception e) {
 			Debug.LogError ("Emotion " + name + " not found!");
 			return false;
-		}
+		}*/
+
+		//remove
+		return false;
 	}
 
 	public bool IsEmotion(EmotionEmum name) {
-		CoreBlendshapeGroup To = null;
-		return emotionDictionary.TryGetValue(name, out To);
+		/*CoreBlendshapeGroup To = null;
+		return emotionDictionary.TryGetValue(name, out To);*/
+		return false;
 	}
 
 	//-------------This is DEBUG-Only right now------------------
@@ -122,7 +124,7 @@ public class EmotionData : MonoBehaviour {
 			return;
 		}
 
-        CoreBlendshapeGroup To = null;
+        /*CoreBlendshapeGroup To = null;
         emotionDictionary.TryGetValue(ToEmotion, out To);
         if (To == null)
             return;
@@ -131,7 +133,7 @@ public class EmotionData : MonoBehaviour {
             StopCoroutine(StopFaceCoroutine);
         }
         CurrentEmotion = To;
-        StartCoroutine(ChangeToFace(To, speed));
+        StartCoroutine(ChangeToFace(To, speed));*/
     }
 
     public void StartResetFace(float time = 2) {
@@ -139,13 +141,16 @@ public class EmotionData : MonoBehaviour {
     }
 
     IEnumerator ResetFace(float time = 2) {
-        foreach (CoreBlendshapeGroup Emotion in m_CharacterManager.GetAllBlendshapeGroups()) {
+        /*foreach (CoreBlendshapeGroup Emotion in m_CharacterManager.GetAllBlendshapeGroups()) {
             StartCoroutine(SetEmotionValueOff(Emotion, Emotion.groupValue, Time.time, time));
             yield return new WaitForEndOfFrame();
-        }
+        }*/
+
+		//remove
+		yield return null;
     }
 
-    IEnumerator ChangeToFace(CoreBlendshapeGroup To, float time = 2) {
+    /*IEnumerator ChangeToFace(CoreBlendshapeGroup To, float time = 2) {
 
         print("TurnOffAll");
         foreach (CoreBlendshapeGroup Emotion in m_CharacterManager.GetAllBlendshapeGroups()) {
@@ -182,7 +187,7 @@ public class EmotionData : MonoBehaviour {
         }
 
 		CurrentEmotionState = ParseEnum<EmotionEmum>(data.groupName.ToLower());
-    }
+    }*/
 }
 
 // 2560 x 1440

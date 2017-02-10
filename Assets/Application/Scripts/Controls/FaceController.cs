@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
-using MORPH3D;
-using MORPH3D.FOUNDATIONS;
 using System.Collections.Generic;
 
 using RootMotion.FinalIK;
