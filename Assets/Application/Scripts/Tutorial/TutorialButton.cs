@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TutorialButton : MonoBehaviour {
 
     [SerializeField]
-    private EmotionData.EmotionEmum assignedEmotion;
+    private EmotionData.EmotionEnum assignedEmotion;
     private Toggle checkMark;
     private bool isComplete;
 

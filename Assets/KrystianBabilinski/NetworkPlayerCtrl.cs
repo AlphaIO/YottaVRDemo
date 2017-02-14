@@ -16,6 +16,7 @@ public class NetworkPlayerCtrl : NetworkBehaviour {
 
     public static FaceController currentFaceController;
 
+	private float _emotionWeight = 50f;
 
     [SyncVar]
 	public string ViewerEmmotion;
@@ -62,9 +63,9 @@ public class NetworkPlayerCtrl : NetworkBehaviour {
             return;
 
         if (isServer)
-            currentFaceController.StartChangeFace(ViewerEmmotion, .3f);
+			currentFaceController.StartChangeFace(ViewerEmmotion, _emotionWeight, .3f);
         else
-            currentFaceController.StartChangeFace(PresenterEmotion, .3f);
+			currentFaceController.StartChangeFace(PresenterEmotion, _emotionWeight, .3f);
 
     }
 

@@ -54,7 +54,7 @@ LightmapSettings:
     m_EnableBakedLightmaps: 1
     m_EnableRealtimeLightmaps: 1
   m_LightmapEditorSettings:
-    serializedVersion: 7
+    serializedVersion: 8
     m_Resolution: 2
     m_BakeResolution: 40
     m_TextureWidth: 1024
@@ -71,7 +71,7 @@ LightmapSettings:
     m_FinalGatherFiltering: 1
     m_FinalGatherRayCount: 1024
     m_ReflectionCompression: 2
-    m_StationaryBakeMode: 1
+    m_MixedBakeMode: 1
     m_BakeBackend: 0
     m_PVRSampling: 1
     m_PVRSampleCount: 500
@@ -1980,8 +1980,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FaceControllerArray:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 520841850}
   macAddress: 
   deviceName: HMSoft
   onDataReceived:
@@ -3324,6 +3323,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 520841849}
+  - component: {fileID: 520841850}
   m_Layer: 10
   m_Name: PlayerArea_Male
   m_TagString: Untagged
@@ -3347,6 +3347,27 @@ Transform:
   m_Father: {fileID: 169210274}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &520841850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 520841848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be9dfd506897b0428bbc2c00edebddf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _faceRenderer: {fileID: 768618495}
+  webAPI: {fileID: 299866600}
+  SlideShow: {fileID: 922866517}
+  neutralBar: {fileID: 1360397664}
+  surpriseBar: {fileID: 477882750}
+  smileBar: {fileID: 1334657991}
+  contemptBar: {fileID: 726796478}
+  disgustBar: {fileID: 112367707}
+  sadnessBar: {fileID: 1821894240}
+  angerBar: {fileID: 1712342376}
 --- !u!1 &542108227
 GameObject:
   m_ObjectHideFlags: 0
@@ -4107,7 +4128,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 711131986}
   m_LocalRotation: {x: 3.469447e-18, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.032, y: 0, z: 0}
+  m_LocalPosition: {x: -0.032, y: -0.1, z: -0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 397685343}
@@ -4490,6 +4511,11 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 763343002}
+--- !u!137 &768618495 stripped
+SkinnedMeshRenderer:
+  m_PrefabParentObject: {fileID: 13700008, guid: 0a6ac3eb6ac159a4daba587d4b05e7d3,
+    type: 3}
+  m_PrefabInternal: {fileID: 1072087890}
 --- !u!1 &769902530 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100250, guid: 0a6ac3eb6ac159a4daba587d4b05e7d3, type: 3}

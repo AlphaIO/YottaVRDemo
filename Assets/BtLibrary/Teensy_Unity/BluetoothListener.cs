@@ -238,6 +238,10 @@ public class BluetoothListener : MonoBehaviour {
 			parsedFeeling = inputDataVariants[Random.Range (0, inputDataVariants.Length)].Trim (charsToTrim).Split (',');
 			SetDebugText (parsedFeeling[0]);
 			onDataReceived.Invoke (parsedFeeling);
+			foreach ( var faceCtrl in FaceControllerArray ) {
+				if ( !faceCtrl.gameObject.activeSelf ) continue;
+				faceCtrl.SetEmotion( parsedFeeling );
+			}
 		}
 	}
 

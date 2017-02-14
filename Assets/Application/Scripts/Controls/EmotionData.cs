@@ -2,31 +2,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using DG.Tweening;
 
 public class EmotionData : MonoBehaviour {
-    public enum EmotionEmum {
-		neutral = 1, 
-		smile = 2, 
-		anger = 3, 
-		contempt = 4, 
-		disgust = 5, 
-		surprise = 6, 
-		fear = 7, 
-		sadness = 8,
+    public enum EmotionEnum {
+		neutral = -1, 
+		smile = 10, 
+		anger = 16, 
+		contempt = 13, 
+		disgust = 14, 
+		surprise = 11, 
+		fear = 15, 
+		sadness = 12,
 
-		big_wide_smile = 9,
-		closed_smile = 10,
-		eyebrows_only = 11,
-		left_teeth = 12,
-		mouth_only = 13,
-		open_wide = 14,
-		pursed_lips = 15,
-		right_teeth = 16,
-		smile_and_eyebrow = 17,
-		teethview = 18
+		big_wide_smile = 5,
+		closed_smile = 3,
+		eyebrows_only = 4,
+		left_teeth = 0,
+		mouth_only = 6,
+		open_wide = 7,
+		pursed_lips =8,
+		right_teeth = 1,
+		smile_and_eyebrow = 9,
+		teethview = 2,
     }
 
-    public static EmotionEmum CurrentEmotionState;
+	[SerializeField] private SkinnedMeshRenderer _faceRenderer;
+
+	private EmotionEnum[] _emotionsList = (EmotionEnum[]) Enum.GetValues ( typeof ( EmotionEnum ) );
+
+    public static EmotionEnum CurrentEmotionState;
 	//Dictionary<EmotionEmum, CoreBlendshapeGroup> emotionDictionary = new Dictionary<EmotionEmum, CoreBlendshapeGroup>();
 
 	//M3DCharacterManager m_CharacterManager;
@@ -87,17 +92,17 @@ public class EmotionData : MonoBehaviour {
 		return false;
 	}
 
-	public bool IsEmotion(EmotionEmum name) {
+	public bool IsEmotion(EmotionEnum name) {
 		/*CoreBlendshapeGroup To = null;
 		return emotionDictionary.TryGetValue(name, out To);*/
 		return false;
 	}
 
 	//-------------This is DEBUG-Only right now------------------
-	public void StartChangeFace(int ToEmotionIndex, float speed) {
+	public void StartChangeFace(int ToEmotionIndex, float emotionWeight, float speed) {
 		try
 		{
-			StartChangeFace ((EmotionEmum)ToEmotionIndex, speed);
+			StartChangeFace ((EmotionEnum)ToEmotionIndex, emotionWeight, speed);
 		}
 		catch (Exception e) {
 			Debug.LogError ("Emotion index " + ToEmotionIndex + " not found!");
@@ -105,24 +110,28 @@ public class EmotionData : MonoBehaviour {
 	}
 	//-----------------------------------------------------------
 
-	public void StartChangeFace(string ToEmotionStr, float speed) {
+	public void StartChangeFace(string ToEmotionStr, float emotionWeight, float speed) {
 		try
 		{
-			StartChangeFace (ParseEnum<EmotionEmum>(ToEmotionStr), speed);
+			StartChangeFace (ParseEnum<EmotionEnum>(ToEmotionStr), emotionWeight, speed);
 		}
 		catch (Exception e) {
 			Debug.LogError ("Emotion " + ToEmotionStr + " not found!");
 		}
 	}
 
-	private void StartChangeFace(EmotionEmum ToEmotion, float speed) 
+	private void StartChangeFace(EmotionEnum ToEmotion, float emotionWeight, float speed) 
 	{
 		//Debug.Log ("-------" + ToEmotion.ToString() + "-------");
 
-		if (ToEmotion == EmotionEmum.neutral) {
+		/*
+		if (ToEmotion == EmotionEnum.neutral) {
 			StartResetFace (.4f);
 			return;
 		}
+		*/
+
+		ChangeFaceAnimate( ToEmotion, emotionWeight, speed );
 
         /*CoreBlendshapeGroup To = null;
         emotionDictionary.TryGetValue(ToEmotion, out To);
@@ -135,6 +144,24 @@ public class EmotionData : MonoBehaviour {
         CurrentEmotion = To;
         StartCoroutine(ChangeToFace(To, speed));*/
     }
+
+	void ChangeFaceAnimate ( EmotionEnum emotion, float weight, float speed ) {
+
+		foreach ( var emo in _emotionsList ) {
+			var indexBlendShape = ( int )emo;
+			var targetWeight = emo == emotion ? weight : 0;
+
+			targetWeight = emotion == EmotionEnum.neutral ? 0 : targetWeight;
+
+			var currentWeight =  _faceRenderer.GetBlendShapeWeight( indexBlendShape );
+			if ( currentWeight == targetWeight ) continue;
+
+			DOTween.To( 
+				()=> _faceRenderer.GetBlendShapeWeight( indexBlendShape )
+				, x=> _faceRenderer.SetBlendShapeWeight( indexBlendShape, x ), targetWeight, speed );
+		}
+
+	}
 
     public void StartResetFace(float time = 2) {
         StartCoroutine(ResetFace(time));

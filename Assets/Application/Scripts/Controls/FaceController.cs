@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 
 using RootMotion.FinalIK;
 public class FaceController : EmotionData {
@@ -17,8 +18,11 @@ public class FaceController : EmotionData {
 	public Image sadnessBar;
 	public Image angerBar;
 
-	private const float defaultFullWidth = 140.0f;
+	private const float defaultFullWidth = 100.0f;
 	private const float defaultMinWidth = 1.0f;
+	private const float barHeight = 24f;
+
+	private const float animSpeed = .4f;
 
     public void SetEmotion(string[] emotion) {
         //webAPI.AddState(emotion);
@@ -26,41 +30,37 @@ public class FaceController : EmotionData {
 
 		//ToDo This is temporary here
 		//Will be changed soon
-		neutralBar.rectTransform.sizeDelta = new Vector2 (defaultMinWidth, 24);
-		surpriseBar.rectTransform.sizeDelta = new Vector2 (defaultMinWidth, 24);
-		smileBar.rectTransform.sizeDelta = new Vector2 (defaultMinWidth, 24);
-		contemptBar.rectTransform.sizeDelta = new Vector2 (defaultMinWidth, 24);
-		disgustBar.rectTransform.sizeDelta = new Vector2 (defaultMinWidth, 24);
-		sadnessBar.rectTransform.sizeDelta = new Vector2 (defaultMinWidth, 24);
-		angerBar.rectTransform.sizeDelta = new Vector2 (defaultMinWidth, 24);
-
 		float emotionLevelWidth = float.Parse (emotion [1]) / 10 * defaultFullWidth;
 
-		switch (emotion[0])
-		{
-			case "neutral":
-				neutralBar.rectTransform.sizeDelta = new Vector2 (emotionLevelWidth, 24);
-				break;
-			case "smile":
-				smileBar.rectTransform.sizeDelta = new Vector2 (emotionLevelWidth, 24);
-				break;
-			case "surprise":
-				surpriseBar.rectTransform.sizeDelta = new Vector2 (emotionLevelWidth, 24);
-				break;
-			case "contempt":
-				contemptBar.rectTransform.sizeDelta = new Vector2 (emotionLevelWidth, 24);
-				break;
-			case "anger":
-				angerBar.rectTransform.sizeDelta = new Vector2 (emotionLevelWidth, 24);
-				break;
-			case "disgust":
-				disgustBar.rectTransform.sizeDelta = new Vector2 (emotionLevelWidth, 24);
-				break;
-			case "sadness":
-				sadnessBar.rectTransform.sizeDelta = new Vector2 (emotionLevelWidth, 24);
-				break;
+		var emotionBars = new Image[] {
+			neutralBar, surpriseBar, smileBar, contemptBar, disgustBar, sadnessBar, angerBar
+		};
+
+		foreach ( var bar in emotionBars ) {
+			if ( bar.rectTransform.sizeDelta.x == 0 ) continue;
+			var targetBar = GetBarImage ( emotion [0] );
+
+			var animVector = targetBar == bar 
+				? new Vector2 (emotionLevelWidth, barHeight)
+				: new Vector2 (defaultMinWidth, barHeight);
+			bar.rectTransform.DOSizeDelta( animVector, animSpeed );
 		}
 
-		StartChangeFace (emotion[0], .4f);
+		Debug.Log( emotion[0] + "   " + emotionLevelWidth );
+		StartChangeFace (emotion[0], emotionLevelWidth, .4f);
     }
+
+	Image GetBarImage ( string emotion ) {
+		switch ( emotion )
+		{
+		case "neutral":		return neutralBar;
+		case "smile":			return smileBar;
+		case "surprise":		return surpriseBar;
+		case "contempt":		return contemptBar;
+		case "anger":			return angerBar;
+		case "disgust":		return disgustBar;
+		case "sadness":		return sadnessBar;
+		}
+		return null;
+	}
 }

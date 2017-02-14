@@ -21,7 +21,7 @@ namespace YottaIO.View {
 		public GameObject angerImg;
 		public GameObject laughImg;
 
-		private EmotionData.EmotionEmum lastEmotion;
+		private EmotionData.EmotionEnum lastEmotion;
 		private const float MAX_CONSECUTIVE_READINGS = 3.0f;
 		private const float EMOTION_COMPLETION_TIME = BluetoothListener.DATA_UPDATE_FREQUENCY * MAX_CONSECUTIVE_READINGS;
 		private float currEmotionActiveTime = 0.0f;
@@ -29,7 +29,7 @@ namespace YottaIO.View {
 		private float currPictureShowTime = 0.0f;
 		private const float MAX_PICTURE_SHOW_TIME = 4.0f;
 		public List<GameObject> imageToShow = new List<GameObject> ();
-		public List<EmotionData.EmotionEmum> imageEmotion = new List<EmotionData.EmotionEmum> ();
+		public List<EmotionData.EmotionEnum> imageEmotion = new List<EmotionData.EmotionEnum> ();
 		public List<bool> isImageLiked = new List<bool> ();
 		private int currPictureIndex = 0;
 
@@ -42,7 +42,7 @@ namespace YottaIO.View {
 			//debugBT = GameObject.Find ("Bluetooth").GetComponent <BluetoothListener> ();
 
 			for (int i = 0; i <= 5; i++) {
-				imageEmotion.Add (EmotionData.EmotionEmum.neutral);	
+				imageEmotion.Add (EmotionData.EmotionEnum.neutral);	
 				isImageLiked.Add (false);
 			}
 
@@ -79,9 +79,9 @@ namespace YottaIO.View {
 
 		private void OnEmotionCompleted ()
 		{
-			if (lastEmotion != EmotionData.EmotionEmum.smile 
-				&& lastEmotion != EmotionData.EmotionEmum.surprise 
-				&& lastEmotion != EmotionData.EmotionEmum.contempt) {
+			if (lastEmotion != EmotionData.EmotionEnum.smile 
+				&& lastEmotion != EmotionData.EmotionEnum.surprise 
+				&& lastEmotion != EmotionData.EmotionEnum.contempt) {
 				return;
 			}
 			
@@ -101,22 +101,22 @@ namespace YottaIO.View {
 			imageEmotion [currPictureIndex] = lastEmotion;
 			isImageLiked [currPictureIndex] = true;
 
-			if (lastEmotion == EmotionData.EmotionEmum.smile && currPictureIndex != 4) {
+			if (lastEmotion == EmotionData.EmotionEnum.smile && currPictureIndex != 4) {
 				likeImg.GetComponent <FbBtnAnimation> ().disableAnimation = false;
 				likeImg.SetActive (true);
 				likeAnimImg.SetActive (true);
 			} 
-			else if (lastEmotion == EmotionData.EmotionEmum.smile && currPictureIndex == 4) {
+			else if (lastEmotion == EmotionData.EmotionEnum.smile && currPictureIndex == 4) {
 				laughImg.GetComponent <FbBtnAnimation> ().disableAnimation = false;
 				laughImg.SetActive (true);
 				laughAnimImg.SetActive (true);
 			}
-			else if (lastEmotion == EmotionData.EmotionEmum.surprise) {
+			else if (lastEmotion == EmotionData.EmotionEnum.surprise) {
 				openImg.GetComponent <FbBtnAnimation> ().disableAnimation = false;
 				openImg.SetActive (true);
 				openAnimImg.SetActive (true);
 			} 
-			else if (lastEmotion == EmotionData.EmotionEmum.contempt) {
+			else if (lastEmotion == EmotionData.EmotionEnum.contempt) {
 				angerImg.GetComponent <FbBtnAnimation> ().disableAnimation = false;
 				angerImg.SetActive (true);
 				angerAnimImg.SetActive (true);
@@ -155,19 +155,19 @@ namespace YottaIO.View {
 			angerImg.SetActive (false);
 			laughImg.SetActive (false);
 
-			if (imageEmotion [currPictureIndex] == EmotionData.EmotionEmum.smile && currPictureIndex != 4) {
+			if (imageEmotion [currPictureIndex] == EmotionData.EmotionEnum.smile && currPictureIndex != 4) {
 				likeImg.GetComponent <FbBtnAnimation> ().disableAnimation = true;
 				likeImg.SetActive (true);
 			} 
-			if (imageEmotion [currPictureIndex] == EmotionData.EmotionEmum.smile && currPictureIndex == 4) {
+			if (imageEmotion [currPictureIndex] == EmotionData.EmotionEnum.smile && currPictureIndex == 4) {
 				laughImg.GetComponent <FbBtnAnimation> ().disableAnimation = true;
 				laughImg.SetActive (true);
 			}
-			else if (imageEmotion [currPictureIndex] == EmotionData.EmotionEmum.surprise) {
+			else if (imageEmotion [currPictureIndex] == EmotionData.EmotionEnum.surprise) {
 				openImg.GetComponent <FbBtnAnimation> ().disableAnimation = true;
 				openImg.SetActive (true);
 			} 
-			else if (imageEmotion [currPictureIndex] == EmotionData.EmotionEmum.contempt) {
+			else if (imageEmotion [currPictureIndex] == EmotionData.EmotionEnum.contempt) {
 				angerImg.GetComponent <FbBtnAnimation> ().disableAnimation = true;
 				angerImg.SetActive (true);
 			}
