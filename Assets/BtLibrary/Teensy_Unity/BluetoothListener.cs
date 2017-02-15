@@ -101,11 +101,11 @@ public class BluetoothListener : MonoBehaviour {
 	private void AfterBtEnabled ()
 	{
 		#if !UNITY_EDITOR
-		//connect ();
+		connect ();
 
 		//Device without BT Yotta testing
 
-		StartCoroutine (RandomInputData ());
+		//StartCoroutine (RandomInputData ());
 		#endif
 	}
 
@@ -238,10 +238,11 @@ public class BluetoothListener : MonoBehaviour {
 			parsedFeeling = inputDataVariants[Random.Range (0, inputDataVariants.Length)].Trim (charsToTrim).Split (',');
 			SetDebugText (parsedFeeling[0]);
 			onDataReceived.Invoke (parsedFeeling);
+			/*
 			foreach ( var faceCtrl in FaceControllerArray ) {
 				if ( !faceCtrl.gameObject.activeSelf ) continue;
 				faceCtrl.SetEmotion( parsedFeeling );
-			}
+			}*/
 		}
 	}
 
